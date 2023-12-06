@@ -3,7 +3,7 @@
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=100G
 
-## This script turns trajectory into a matrix of xyz-t of protein atoms
+## This script turns trajectory into a matrix of xyz-t of Calpha only
 ## Inputs:
 ##   scramble_os.psf
 ##   scrambled1.dcd
@@ -15,8 +15,8 @@
 conda activate ambrose_neural_nets
 ScriptDir='/home/hex4001/DNN/step_2_get_xyz/'
 grouplabel=1
-python3 ${ScriptDir}/transform.py scramble_os.psf scrambled1.dcd labels.dat coordinates1.dat $grouplabel
-python3 ${ScriptDir}/transform.py scramble_os.psf scrambled2.dcd labels.dat coordinates2.dat $grouplabel
-python3 ${ScriptDir}/transform.py scramble_os.psf scrambled3.dcd labels.dat coordinates3.dat $grouplabel
+python3 ${ScriptDir}/transform_CA.py scrambled.psf scrambled1.dcd labels.dat CA_coordinates1.dat $grouplabel
+python3 ${ScriptDir}/transform_CA.py scrambled.psf scrambled2.dcd labels.dat CA_coordinates2.dat $grouplabel
+python3 ${ScriptDir}/transform_CA.py scrambled.psf scrambled3.dcd labels.dat CA_coordinates3.dat $grouplabel
 
 exit

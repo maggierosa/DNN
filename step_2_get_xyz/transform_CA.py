@@ -23,9 +23,9 @@ u_class1 = MDAnalysis.Universe(psf,traj_scrambled)
 print('extracting coordinates')
 
 class1_XYZ = []
-protein = u_class1.select_atoms("all")
+Ca = u_class1.select_atoms("name CA and not resid 24 25 26 224 223")
 for ts in u_class1.trajectory:
-    class1_XYZ.append(protein.positions)
+    class1_XYZ.append(Ca.positions)
 class1_XYZ = np.array(class1_XYZ)
 
 class1_labels = np.ones(class1_XYZ.shape[0])*class_code
